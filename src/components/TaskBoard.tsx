@@ -1,15 +1,19 @@
 import { useState } from "react";
 import PlusIcon from "../icons/PlusIcon";
-import { Column } from "../types";
+import { Column, Id } from "../types";
+import ColumnContainer from "./ColumnContainer";
 
 const TaskBoard = () => {
     const [columns, setColumns] = useState<Column[]>([]);
     return (
         <div className="m-auto flex min-h-screen w-full items-center overflow-x-auto overflow-y-hidden px-[40px-">
-            <div className="m-auto">
-                <div>
+            <div className="m-auto flex gap-4">
+                <div className="flex gap-4">
                     {columns.map((col) => (
-                        <div>{col.title}</div>
+                        <ColumnContainer
+                            column={col}
+                            deleteColumn={deleteColumn}
+                        />
                     ))}
                 </div>
                 <button
@@ -29,6 +33,11 @@ const TaskBoard = () => {
             title: `Column ${columns.length + 1}`,
         };
         setColumns([...columns, columnToAdd]);
+    }
+
+    function deleteColumn(id: Id) {
+        const filteredColumns = columns.filter((col) => col.id !== id);
+        setColumns(filteredColumns);
     }
 };
 
