@@ -1,8 +1,8 @@
 import "./App.css";
-import TaskBoard from "./components/TaskBoard";
+import KanbanBoard from "./components/KanbanBoard";
 
 function App() {
-    return <TaskBoard />;
+  return <KanbanBoard />;
 }
 
 export default App;
